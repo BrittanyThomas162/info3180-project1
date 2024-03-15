@@ -6,10 +6,10 @@ class Property(db.Model):
 
     propertyId = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(128))
-    numBed = db.Column(db.Integer)
-    numBath = db.Column(db.Integer)
+    numBed = db.Column(db.String(20))
+    numBath = db.Column(db.String(20))
     location = db.Column(db.String(128))
-    price = db.Column(db.Integer)
+    price = db.Column(db.String(20))
     prop_type = db.Column(db.String(20))
     description = db.Column(db.String(1000))
     photo = db.Column(db.Text)

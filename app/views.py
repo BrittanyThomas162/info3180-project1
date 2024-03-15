@@ -46,19 +46,10 @@ input must be stored in a PostgreSQL database.'''
 property. (See Figure 1)'''
 @app.route('/properties/create', methods=['POST', 'GET'])
 def create():
-    pass
     form = NewPropertyForm()
-    
-    '''if request.method == 'GET':
-        return render_template("createProperty.html",form=form)
-  
-    if request.method == 'POST' and form.validate_on_submit():
-        
-        #photo =  myform.photo.data  
-        #filename = secure_filename(photo.filename)  '''
        
     if form.validate_on_submit():
-        
+
         title = form.title.data
         numBed = form.numBed.data
         numBath = form.numBath.data
@@ -78,8 +69,6 @@ def create():
 
         flash('New property successfully added','success')
         return redirect(url_for('displayProperty'))
-    else:
-        flash('Property was not added','danger')
         
     flash_errors(form)
     return render_template('createProperty.html', form=form)
