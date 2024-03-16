@@ -7,10 +7,11 @@ This file contains the routes for your application.
 
 import os
 from app import app, db
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from app.models import Property
 from app.forms import NewPropertyForm
+from operator import length_hint
 
 
 ###
@@ -28,22 +29,7 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
-'''The add new property form must be created using Flask-WTF and contain
-the following fields:
-1. Text fields for title, number of bedrooms, number of
-bathrooms, location and price.
-2. Select (option) field for type (whether House or Apartment)
-3. Textarea field for a short description.
-4. File upload field called photo which accepts the image of the
-Property.
 
-Upon submission, the form should make a POST request and validate the
-user input to prevent bad data. A unique id should be generated (e.g. an
-auto incrementing id field in your model) and also the filename of the
-photo for the new property should be saved in the database. All of this
-input must be stored in a PostgreSQL database.'''
-'''1. "/properties/create" For displaying the form to add a new
-property. (See Figure 1)'''
 @app.route('/properties/create', methods=['POST', 'GET'])
 def create():
     form = NewPropertyForm()
@@ -74,18 +60,36 @@ def create():
     return render_template('createProperty.html', form=form)
     
 
-'''2. "/properties" For displaying a list of all properties in the
-database. (See Figure 2)'''
 @app.route('/properties')
 def displayProperty():
-    pass
+    images = get_uploaded_images()
+    properties= Property.query.all()
+
+    if not properties:
+        flash('No properties available.', 'warning')  
+
+    return render_template('listProperties.html', images=images, properties=properties)
+
+def get_uploaded_images():
+    rootdir = app.config['UPLOAD_FOLDER']
+    photo_lst = []
+    for subdir, dirs, files in os.walk(rootdir):
+        for file in files:
+            if file.endswith(('.jpg', '.jpeg', '.png')):
+                photo_lst.append(file)
+    return photo_lst
+
+@app.route('/uploads/<filename>')
+def get_image(filename):
+    rootdir = app.config['UPLOAD_FOLDER']
+    return send_from_directory(os.path.join(os.getcwd(), rootdir), filename)    
 
 
 '''
 3. "/properties/<propertyid>" For viewing an individual property
 by the specific property id.'''
 @app.route('/properties/<propertyid>')
-def viewProperty():
+def viewProperty(propertyid):
     pass
 
 
