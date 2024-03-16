@@ -85,12 +85,10 @@ def get_image(filename):
     return send_from_directory(os.path.join(os.getcwd(), rootdir), filename)    
 
 
-'''
-3. "/properties/<propertyid>" For viewing an individual property
-by the specific property id.'''
 @app.route('/properties/<propertyid>')
 def viewProperty(propertyid):
-    pass
+    property_info = Property.query.get_or_404(propertyid)
+    return render_template('indProperty.html', property_info=property_info)
 
 
 ###

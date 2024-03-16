@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block main %} {% include 'flash_messages.html' %}
+
+<div class="ind-container">
+  <img
+    src="{{ url_for('get_image', filename=property_info.photo) }}"
+    alt="{{property_info.photo}}"
+  />
+
+  <div class="all-details">
+    <h5>{{ property_info.title }}</h5>
+    <div class="circle-info">
+      <p class="price">${{ property_info.price }}</p>
+      <p class="type">{{ property_info.prop_type }}</p>
+    </div>
+    <p class="description">{{ property_info.description }}</p>
+
+    <div class="num-info">
+      <p class="bedroom">{{ property_info.numBed }} Bedrooms</p>
+      <p class="bathroom">{{ property_info.numBath }} Bathrooms</p>
+    </div>
+    <p class="location">{{ property_info.location }}</p>
+
+    <button class="btn btn-primary">Email Realtor</button>
+  </div>
+</div>
+
+{% endblock %}
