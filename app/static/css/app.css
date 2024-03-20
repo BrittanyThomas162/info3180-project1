@@ -1,3 +1,132 @@
 body {
     padding-top: 5rem;
+    background-color:#eeeeee;
+}
+
+h1, .info-grid  {
+    padding-bottom:20px;
+}
+
+.info-grid ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    list-style-type: none;
+    gap:30px;
+}
+
+.info-box {
+    height: 400px;
+    width: 330px;
+   background-color: white;
+}
+
+.info-box img{
+    height: 50%;
+    width: 330px;
+}
+
+ul{
+    padding-left: 0;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    padding:15px;
+    height:38%;
+}
+
+.details p {
+    margin-bottom: 8px;
+}
+
+.view-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d6efd;
+    height: 12%;
+    margin-top: 10px;
+}
+
+.view-link a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+details .location {
+    color: gray;
+}
+
+.price{
+    background-color: #1e87f0;
+    border-radius: 25px;
+    color:white;
+    font-weight: bold;
+    padding:3px;
+    width: 130px;
+    text-align: center; 
+    font-size:14px;
+}
+
+.ind-container {
+    width: 80%;
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+}
+
+.ind-container img{
+    width: 45%;
+}
+
+.all-details {
+    padding: 30px;
+}
+
+.all-details h5{
+    padding-bottom: 16px;
+}
+
+.circle-info, .num-info {
+    display: flex;
+    gap: 20px;
+}
+
+.type {
+    background-color: #FFDF00;
+    border-radius: 25px;
+    color:white;
+    font-weight: bold;
+    padding:3px 20px;
+    text-align: center; 
+    font-size:14px;
+}
+
+.form-section {
+    background-color: white;
+    padding:40px;
+    width: 70%;
+    margin-bottom: 50px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-group {
+    width: 85%;
+}
+
+.form-grouping{
+    display:flex;
+    gap:40px;
+    width:85%;
+}
+
+.form-grouping-2{
+    width:47%;
 }
